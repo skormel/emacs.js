@@ -1,6 +1,9 @@
 ;;; package --- Summary
 ;;; Commentary:
 ;;; Code:
+
+
+;; Set this varibles to make elpa works with PROXY
 ;; (setq url-proxy-services
 ;;       '(("no-proxy" . "^\\(localhost|10.*\\)")
 ;;     ("http" . "dns:port")
@@ -8,7 +11,7 @@
 
 (require 'package)
 (add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
 (setq gc-cons-threshold 100000000)
@@ -18,7 +21,6 @@
 
 (require 'linum)
 (setq linum-format "%d ")
-;(autoload 'linum "linum" "Line numbers for buffers." t)
 (add-hook 'find-file-hook (lambda () (linum-mode 1)))
 
 (menu-bar-mode 0)
@@ -27,36 +29,49 @@
 (setq column-number-mode t)
 
 (defconst demo-packages
-  '(anzu
-    company
-    duplicate-thing
-    ggtags
-    ;; function-args
+  '(2048-game
+    anzu
+    auto-complete
+    browse-kill-ring
     clean-aindent-mode
-    comment-dwim-2
-    dtrt-indent
-    ws-butler
-    iedit
-    yasnippet
-    smartparens
-    projectile
-    volatile-highlights
-    undo-tree
-    2048-game
-    flycheck
-    magit
     color-theme-modern
-    markdown-mode
-    js2-mode
-    json-mode
-    tide
+    comment-dwim-2
+    company
+    dtrt-indent
+    duplicate-thing
+    editorconfig
+    exec-path-from-shell
+    flycheck
+    ggtags
     helm
     helm-core
     helm-css-scss
+    iedit
+    js2-mode
+    json-mode
+    json-snatcher
+    magit
+    markdown-mode
+    php-mode
+    php-auto-yasnippets
+    projectile
+    restclient
+    restclient-helm
     sass-mode
     scss-mode
-    editorconfig
+    seq
+    smartparens
+    tern
+    tern-auto-complete
+    tide
+    typescript-mode
+    undo-tree
+    volatile-highlights
+    with-editor
+    ws-butler
+    yasnippet
     zygospore))
+
 
 (defun install-packages ()
   "Install all required packages."
@@ -71,10 +86,8 @@
 
 (windmove-default-keybindings)
 
+;; Load custom scripts from custom directory
 (add-to-list 'load-path "~/.emacs.d/custom")
-(add-to-list 'load-path "~/.emacs.d/custom/skeleton")
-(add-to-list 'load-path "~/.emacs.d/custom/ac-dict")
-(add-to-list 'load-path "~/.emacs.d/custom/helm")
 
 (require 'helm-config)
 (helm-mode 1)
@@ -108,21 +121,6 @@
 ;; set appearance of a tab that is represented by 4 spaces
 (setq-default tab-width 4)
 
-;; Compilation
-(global-set-key (kbd "<f5>") (lambda ()
-                               (interactive)
-                               (setq-local compilation-read-command nil)
-                               (call-interactively 'compile)))
-
-;; setup GDB
-(setq
- ;; use gdb-many-windows by default
- gdb-many-windows t
-
- ;; Non-nil means display source file containing the main routine at startup
- gdb-show-main t
- )
-
 ;; Package: clean-aindent-mode
 (require 'clean-aindent-mode)
 (add-hook 'prog-mode-hook 'clean-aindent-mode)
@@ -151,7 +149,7 @@
 
 ;; Package: projectile
 (require 'projectile)
-(projectile-global-mode)
+(projectile-mode)
 (setq projectile-enable-caching t)
 
 ;; Package zygospore
@@ -174,8 +172,8 @@
 
 ;; disable jshint since we prefer eslint checking
 (setq-default flycheck-disabled-checkers
-  (append flycheck-disabled-checkers
-    '(javascript-eslint)))
+              (append flycheck-disabled-checkers
+                      '(javascript-eslint)))
 
 (eval-after-load 'php-mode
   '(require 'php-ext))
@@ -188,17 +186,18 @@
 (define-key php-mode-map (kbd "C-c C-y") 'yas/create-php-snippet)
 ;;(payas/ac-setup)
 
- (defun transpose-windows (arg)
-   "Transpose the buffers shown in two windows."
-   (interactive "p")
-   (let ((selector (if (>= arg 0) 'next-window 'previous-window)))
-     (while (/= arg 0)
-       (let ((this-win (window-buffer))
-             (next-win (window-buffer (funcall selector))))
-         (set-window-buffer (selected-window) next-win)
-         (set-window-buffer (funcall selector) this-win)
-         (select-window (funcall selector)))
-       (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
+(defun transpose-windows (arg)
+  "Transpose the buffers shown in two windows.
+ARG argument is unkown"
+  (interactive "p")
+  (let ((selector (if (>= arg 0) 'next-window 'previous-window)))
+    (while (/= arg 0)
+      (let ((this-win (window-buffer))
+            (next-win (window-buffer (funcall selector))))
+        (set-window-buffer (selected-window) next-win)
+        (set-window-buffer (funcall selector) this-win)
+        (select-window (funcall selector)))
+      (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
 
 (define-key ctl-x-4-map (kbd "t") 'transpose-windows)
 
@@ -209,30 +208,7 @@
         (delq (current-buffer)
               (remove-if-not 'buffer-file-name (buffer-list)))))
 
-(defun duplicate-line-or-region (&optional n)
-  "Duplicate current line, or region if active.
-With argument N, make N copies.
-With negative N, comment out original line and use the absolute value."
-  (interactive "*p")
-  (let ((use-region (use-region-p)))
-    (save-excursion
-      (let ((text (if use-region ;Get region if active, otherwise line
-                      (buffer-substring (region-beginning) (region-end))
-                    (prog1 (thing-at-point 'line)
-                      (end-of-line)
-                      (if (< 0 (forward-line 1)) ;Go to beginning of next lines, or make a new one
-                          (newline))))))
-        (dotimes (i (abs (or n 1))) ;Insert N times, or once if not specified
-          (insert text))))
-    (if use-region nil ;Only if we're working with a line (not a region)
-      (let ((pos (- (point) (line-beginning-position))))
-      (if (> 0 n) ; comment out original with negative arg
-          (comment-region (line-beginning-position) (line-end-position)))
-      (forward-line 1)
-      (forward-char pos)))))
-
-(global-set-key (kbd "C-c C-d") 'duplicate-line-or-region)
-
+(global-set-key (kbd "C-c C-d") 'duplicate-thing)
 
 (defun setup-tide-mode ()
   "Setup for tide-mode."
@@ -258,8 +234,6 @@ With negative N, comment out original line and use the absolute value."
 ;; format options
 (setq tide-format-options '(:insertSpaceAfterFunctionKeywordForAnonymousFunctions t :placeOpenBraceOnNewLineForFunctions nil))
 
-
-;;; init.el ends here
 
 (defun indent-buffer ()
   "Indent full Buffer."
@@ -290,14 +264,14 @@ With negative N, comment out original line and use the absolute value."
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-hook 'js2-mode-hook '(lambda ()
-                           (setq js2-basic-offset 2)
-                           (tern-mode t)))
+                            (setq js2-basic-offset 2)
+                            (tern-mode t)))
 
 ;; Enable autocomplete on tern-mode
 (eval-after-load 'tern
   '(progn
      (require 'tern-auto-complete)
-           (tern-ac-setup)))
+     (tern-ac-setup)))
 
 
 (require 'editorconfig)
@@ -320,6 +294,7 @@ With negative N, comment out original line and use the absolute value."
  '(package-selected-packages
    (quote
     (zygospore yasnippet ws-butler volatile-highlights undo-tree tide tern-auto-complete smartparens scss-mode sass-mode projectile markdown-mode magit json-mode js2-mode iedit helm-css-scss ggtags exec-path-from-shell editorconfig duplicate-thing dtrt-indent company comment-dwim-2 color-theme-modern clean-aindent-mode browse-kill-ring anzu 2048-game))))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
