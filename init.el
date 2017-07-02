@@ -29,7 +29,8 @@
 (setq column-number-mode t)
 
 (defconst demo-packages
-  '(2048-game
+  '(
+    2048-game
     anzu
     auto-complete
     browse-kill-ring
@@ -40,6 +41,7 @@
     dtrt-indent
     duplicate-thing
     editorconfig
+    emmet-mode
     exec-path-from-shell
     flycheck
     ggtags
@@ -48,15 +50,18 @@
     helm-css-scss
     iedit
     js2-mode
+    js2-refactor
     json-mode
     json-snatcher
     magit
     markdown-mode
-    php-mode
+    multiple-cursors
     php-auto-yasnippets
+    php-mode
     projectile
     restclient
     restclient-helm
+    s
     sass-mode
     scss-mode
     seq
@@ -70,7 +75,8 @@
     with-editor
     ws-butler
     yasnippet
-    zygospore))
+    zygospore
+    ))
 
 
 (defun install-packages ()
@@ -99,8 +105,6 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "C-z") 'helm-select-action)
-
-
 
 (require 'php-mode)
 (eval-after-load 'php-mode
@@ -174,9 +178,6 @@
 (setq-default flycheck-disabled-checkers
               (append flycheck-disabled-checkers
                       '(javascript-eslint)))
-
-(eval-after-load 'php-mode
-  '(require 'php-ext))
 
 (require 'restclient)
 
@@ -286,6 +287,18 @@ ARG argument is unkown"
 (require 'browse-kill-ring)
 (browse-kill-ring-default-keybindings)
 
+(require 'emmet-mode)
+(add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+(add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+(global-set-key (kbd "C-c C-d") 'emmet-expand-line)
+
+
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -301,3 +314,5 @@ ARG argument is unkown"
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;;; init.el ends here

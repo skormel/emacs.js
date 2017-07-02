@@ -4,7 +4,13 @@ This project it's about my emacs config for working with php, typescript, javasc
 
 ## Dependencies
 
+### System
 ```
-npm install -g tern
+apt install php
+```
+
+### Nodejs 
+```
+npm install -g tern eslint
 ```
 
