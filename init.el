@@ -215,6 +215,7 @@ ARG argument is unkown"
   (tide-setup)
   (flycheck-mode +1)
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  ;; (flycheck-add-next-checker 'typescript-tide '(t . typescript-tslint) 'append)
   (eldoc-mode +1)
   ;; company is an optional dependency. You have to
   ;; install it separately via package-install
@@ -314,11 +315,11 @@ ARG argument is unkown"
 
 (defun nxml-pretty-format ()
   "Format xml."
-    (interactive)
-    (save-excursion
-        (shell-command-on-region (point-min) (point-max) "xmllint --format -" (buffer-name) t)
-        (nxml-mode)
-        (indent-region 0 (count-lines (point-min) (point-max)))))
+  (interactive)
+  (save-excursion
+    (shell-command-on-region (point-min) (point-max) "xmllint --format -" (buffer-name) t)
+    (nxml-mode)
+    (indent-region 0 (count-lines (point-min) (point-max)))))
 
 ;; Enable magit-svn extension
 (add-hook 'magit-mode-hook 'magit-svn-mode)
