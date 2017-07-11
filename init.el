@@ -54,6 +54,7 @@
     json-mode
     json-snatcher
     magit
+    magit-svn
     markdown-mode
     multiple-cursors
     php-auto-yasnippets
@@ -77,7 +78,6 @@
     yasnippet
     zygospore
     ))
-
 
 (defun install-packages ()
   "Install all required packages."
@@ -320,7 +320,8 @@ ARG argument is unkown"
         (nxml-mode)
         (indent-region 0 (count-lines (point-min) (point-max)))))
 
-
+;; Enable magit-svn extension
+(add-hook 'magit-mode-hook 'magit-svn-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -329,7 +330,7 @@ ARG argument is unkown"
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (zygospore yasnippet ws-butler volatile-highlights undo-tree tide tern-auto-complete smartparens scss-mode sass-mode projectile markdown-mode magit json-mode js2-mode iedit helm-css-scss ggtags exec-path-from-shell editorconfig duplicate-thing dtrt-indent company comment-dwim-2 color-theme-modern clean-aindent-mode browse-kill-ring anzu 2048-game))))
+    (magit-svn zygospore yasnippet ws-butler volatile-highlights undo-tree tide tern-auto-complete smartparens scss-mode sass-mode projectile markdown-mode magit json-mode js2-mode iedit helm-css-scss ggtags exec-path-from-shell editorconfig duplicate-thing dtrt-indent company comment-dwim-2 color-theme-modern clean-aindent-mode browse-kill-ring anzu 2048-game))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
