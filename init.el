@@ -209,8 +209,6 @@ ARG argument is unkown"
         (delq (current-buffer)
               (remove-if-not 'buffer-file-name (buffer-list)))))
 
-(global-set-key (kbd "C-c C-d") 'duplicate-thing)
-
 (defun setup-tide-mode ()
   "Setup for tide-mode."
   (interactive)
@@ -299,7 +297,30 @@ ARG argument is unkown"
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
+(global-set-key (kbd "C-c C-d") 'duplicate-thing)
+
+
 (require 's)
+
+
+(require 'sgml-mode)
+
+(defun reformat-xml ()
+  "Format xml."
+  (interactive)
+  (save-excursion
+    (sgml-pretty-print (point-min) (point-max))
+    (indent-region (point-min) (point-max))))
+
+(defun nxml-pretty-format ()
+  "Format xml."
+    (interactive)
+    (save-excursion
+        (shell-command-on-region (point-min) (point-max) "xmllint --format -" (buffer-name) t)
+        (nxml-mode)
+        (indent-region 0 (count-lines (point-min) (point-max)))))
+
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
