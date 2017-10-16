@@ -45,6 +45,7 @@
     exec-path-from-shell
     flycheck
     ggtags
+    haskell-mode
     helm
     helm-core
     helm-css-scss
@@ -73,6 +74,7 @@
     typescript-mode
     undo-tree
     volatile-highlights
+    web-mode
     with-editor
     ws-butler
     yasnippet
