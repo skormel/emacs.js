@@ -45,7 +45,11 @@
 (use-package diminish
   :ensure t)
 
-(require 'setup-old-config)
+;;(require 'setup-old-config)
+(require 'setup-global)
+(require 'setup-theme)
+(require 'setup-hydra)
+(require 'setup-git-stuff)
 
 ;; (require 'setup-osx)
 ;; (require 'setup-org)

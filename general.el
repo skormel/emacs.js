@@ -18,7 +18,7 @@ Example:
        ,@body))
 
 (when (eq system-type 'darwin)
-  (setq source-directory "/Users/csraghunandan/Library/Caches/Homebrew/emacs--git"))
+  (setq source-directory "/Users/skormel/Library/Caches/Homebrew/emacs--git"))
 
 (defvar emacs-git-branch
   (when (and emacs-repository-version

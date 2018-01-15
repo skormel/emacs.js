@@ -2,18 +2,18 @@
 ;;; Commentary:
 ;;; Code:
 
-(setq inhibit-startup-message t)
+;; (setq inhibit-startup-message t)
 
-(defalias 'yes-or-no-p 'y-or-n-p)
+;; (defalias 'yes-or-no-p 'y-or-n-p)
 
-(require 'linum)
-(setq linum-format "%d ")
-(add-hook 'find-file-hook (lambda () (linum-mode 1)))
+;; (require 'linum)
+;; (setq linum-format "%d ")
+;; (add-hook 'find-file-hook (lambda () (linum-mode 1)))
 
-(menu-bar-mode 0)
-(scroll-bar-mode 0)
-(tool-bar-mode 0)
-(setq column-number-mode t)
+;; (menu-bar-mode 0)
+;; (scroll-bar-mode 0)
+;; (tool-bar-mode 0)
+;; (setq column-number-mode t)
 
 (defconst demo-packages
   '(
