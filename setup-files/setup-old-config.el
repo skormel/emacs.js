@@ -2,47 +2,32 @@
 ;;; Commentary:
 ;;; Code:
 
-;; (setq inhibit-startup-message t)
-
-;; (defalias 'yes-or-no-p 'y-or-n-p)
-
-;; (require 'linum)
-;; (setq linum-format "%d ")
-;; (add-hook 'find-file-hook (lambda () (linum-mode 1)))
-
-;; (menu-bar-mode 0)
-;; (scroll-bar-mode 0)
-;; (tool-bar-mode 0)
-;; (setq column-number-mode t)
-
 (defconst demo-packages
   '(
     2048-game
-    anzu
+    ;; anzu
     auto-complete
     browse-kill-ring
     clean-aindent-mode
-    color-theme-modern
+    ;; color-theme-modern
     comment-dwim-2
     company
     dtrt-indent
-    duplicate-thing
+    ;; duplicate-thing
     editorconfig
-    emmet-mode
+    ;; emmet-mode
     exec-path-from-shell
     flycheck
     ggtags
     haskell-mode
-    helm
-    helm-core
-    helm-css-scss
+    ;; helm
+    ;; helm-core
+    ;; helm-css-scss
     iedit
     js2-mode
     js2-refactor
     json-mode
     json-snatcher
-    magit
-    magit-svn
     markdown-mode
     multiple-cursors
     php-auto-yasnippets
@@ -55,7 +40,7 @@
     sass-mode
     scss-mode
     seq
-    smartparens
+    ;; smartparens
     tern
     tern-auto-complete
     tide
@@ -64,52 +49,27 @@
     volatile-highlights
     with-editor
     ws-butler
-    yasnippet
-    zygospore
+    ;; yasnippet
+    ;; zygospore
     ))
 
-(defun install-packages ()
-  "Install all required packages."
-  (interactive)
-  (unless package-archive-contents
-    (package-refresh-contents))
-  (dolist (package demo-packages)
-    (unless (package-installed-p package)
-      (package-install package))))
-
-(install-packages)
-
 (windmove-default-keybindings)
-
-;; Load custom scripts from custom directory
-(add-to-list 'load-path "~/.emacs.d/custom")
-
-(require 'helm-config)
-(helm-mode 1)
-
-(define-key global-map [remap find-file] 'helm-find-files)
-(define-key global-map [remap occur] 'helm-occur)
-(define-key global-map [remap list-buffers] 'helm-buffers-list)
-(define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
-(define-key helm-map (kbd "C-z") 'helm-select-action)
 
 (require 'php-mode)
 (eval-after-load 'php-mode
   '(require 'php-ext))
 
 
-(global-set-key (kbd "RET") 'newline-and-indent)  ; automatically indent when press RET
+;; (global-set-key (kbd "RET") 'newline-and-indent)  ; automatically indent when press RET
 
 ;; activate whitespace-mode to view all whitespace characters
-(global-set-key (kbd "C-c w") 'whitespace-mode)
+;; (global-set-key (kbd "C-c w") 'whitespace-mode)
 
-;; show unncessary whitespace that can mess up your diff
-(add-hook 'prog-mode-hook (lambda () (interactive) (setq show-trailing-whitespace 1)))
+;; ;; show unncessary whitespace that can mess up your diff
+;; (add-hook 'prog-mode-hook (lambda () (interactive) (setq show-trailing-whitespace 1)))
 
-;; use space to indent by default
-(setq-default indent-tabs-mode nil)
+;; ;; use space to indent by default
+;; (setq-default indent-tabs-mode nil)
 
 ;; set appearance of a tab that is represented by 4 spaces
 (setq-default tab-width 4)
@@ -126,36 +86,17 @@
 (require 'ws-butler)
 (add-hook 'prog-mode-hook 'ws-butler-mode)
 
-;; Package: yasnippet
-(require 'yasnippet)
-(yas-global-mode 1)
-
-;; Package: smartparens
-(require 'smartparens-config)
-(setq sp-base-key-bindings 'paredit)
-(setq sp-autoskip-closing-pair 'always)
-(setq sp-hybrid-kill-entire-symbol nil)
-(sp-use-paredit-bindings)
-
-(show-smartparens-global-mode +1)
-(smartparens-global-mode 1)
+;; ;; Package: yasnippet
+;; (require 'yasnippet)
+;; (yas-global-mode 1)
 
 ;; Package: projectile
 (require 'projectile)
 (projectile-mode)
 (setq projectile-enable-caching t)
 
-;; Package zygospore
-(global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows)
-(global-set-key (kbd "C-x g") 'magit-status)
-(global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
-
-(global-set-key (kbd "C-x a i") 'indent-region)  ; automatically indent when press
-(global-set-key (kbd "C-x a c") 'comment-region)  ; automatically indent when press RET
-(global-set-key (kbd "C-x a u c") 'uncomment-region)  ; automatically indent when press RET
-
-(load-theme 'arjen t t)
-(enable-theme 'arjen)
+;; ;; Package zygospore
+;; (global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows)
 
 ;; http://www.flycheck.org/manual/latest/index.html
 (require 'flycheck)
@@ -175,28 +116,6 @@
 (require 'php-auto-yasnippets)
 (define-key php-mode-map (kbd "C-c C-y") 'yas/create-php-snippet)
 ;;(payas/ac-setup)
-
-(defun transpose-windows (arg)
-  "Transpose the buffers shown in two windows.
-ARG argument is unkown"
-  (interactive "p")
-  (let ((selector (if (>= arg 0) 'next-window 'previous-window)))
-    (while (/= arg 0)
-      (let ((this-win (window-buffer))
-            (next-win (window-buffer (funcall selector))))
-        (set-window-buffer (selected-window) next-win)
-        (set-window-buffer (funcall selector) this-win)
-        (select-window (funcall selector)))
-      (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
-
-(define-key ctl-x-4-map (kbd "t") 'transpose-windows)
-
-(defun kill-other-buffers ()
-  "Kill all other buffers."
-  (interactive)
-  (mapc 'kill-buffer
-        (delq (current-buffer)
-              (remove-if-not 'buffer-file-name (buffer-list)))))
 
 (defun setup-tide-mode ()
   "Setup for tide-mode."
@@ -223,34 +142,6 @@ ARG argument is unkown"
 ;; format options
 (setq tide-format-options '(:insertSpaceAfterFunctionKeywordForAnonymousFunctions t :placeOpenBraceOnNewLineForFunctions nil))
 
-
-(defun indent-buffer ()
-  "Indent full Buffer."
-  (interactive)
-  (delete-trailing-whitespace)
-  (indent-region (point-min) (point-max) nil)
-  (untabify (point-min) (point-max)))
-
-(global-set-key (kbd "C-x a b") 'indent-buffer)
-
-(require 'helm-css-scss)
-;; Allow comment inserting depth at each of a brace
-(setq helm-css-scss-insert-close-comment-depth 2)
-;; If this value is t, split window appers inside the current windows
-(setq helm-css-scss-split-with-multiple-windows nil)
-;; Split direction. 'split-window-vertically or 'split-window-horizontally
-(setq helm-css-scss-insert-split-direction 'split-window-vertically)
-
-;; Set local keybind map for css-mode / scss-mode / less-css-mode
-(dolist ($hook '(css-mode-hook scss-mode-hook less-css-mode-hook))
-  (add-hook
-   $hook (lambda ()
-           (local-set-key (kbd "s-i") 'helm-css-scss)
-           (local-set-key (kbd "s-I") 'helm-css-scss-back-to-last-point))))
-
-(define-key isearch-mode-map (kbd "s-i") 'helm-css-scss-from-isearch)
-(define-key isearch-mode-map (kbd "s-i") 'helm-css-scss-multi-from-helm-css-scss)
-
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-hook 'js2-mode-hook '(lambda ()
                             (setq js2-basic-offset 2)
@@ -266,7 +157,7 @@ ARG argument is unkown"
 (require 'editorconfig)
 (editorconfig-mode 1)
 
-(global-anzu-mode +1)
+;; (global-anzu-mode +1)
 
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
@@ -275,10 +166,10 @@ ARG argument is unkown"
 (require 'browse-kill-ring)
 (browse-kill-ring-default-keybindings)
 
-(require 'emmet-mode)
-(add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
-(add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
-(global-set-key (kbd "C-c C-d") 'emmet-expand-line)
+;; (require 'emmet-mode)
+;; (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+;; (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+;; (global-set-key (kbd "C-c C-d") 'emmet-expand-line)
 
 
 (require 'multiple-cursors)
@@ -287,31 +178,13 @@ ARG argument is unkown"
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
-(global-set-key (kbd "C-c C-d") 'duplicate-thing)
+;; (global-set-key (kbd "C-c C-d") 'duplicate-thing)
 
 
 (require 's)
 
 
 (require 'sgml-mode)
-
-(defun reformat-xml ()
-  "Format xml."
-  (interactive)
-  (save-excursion
-    (sgml-pretty-print (point-min) (point-max))
-    (indent-region (point-min) (point-max))))
-
-(defun nxml-pretty-format ()
-  "Format xml."
-  (interactive)
-  (save-excursion
-    (shell-command-on-region (point-min) (point-max) "xmllint --format -" (buffer-name) t)
-    (nxml-mode)
-    (indent-region 0 (count-lines (point-min) (point-max)))))
-
-;; Enable magit-svn extension
-(add-hook 'magit-mode-hook 'magit-svn-mode)
 
 (provide 'setup-old-config)
 

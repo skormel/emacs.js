@@ -10,7 +10,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (gitattributes-mode gitconfig-mode gitignore-mode git-link git-messenger diff-hl git-timemachine magit hydra diminish use-package))))
+    (anzu zygospore yasnippet yasnippets duplicate-thing emmet-mode smartparens helm-css-scss helm magit-svn gitattributes-mode gitconfig-mode gitignore-mode git-link git-messenger diff-hl git-timemachine magit hydra diminish use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
