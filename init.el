@@ -57,6 +57,7 @@
 (require 'setup-yasnippets)
 (require 'setup-zygospore)
 (require 'setup-anzu)
+(require 'setup-tex)
 
 ;; (require 'setup-osx)
 ;; (require 'setup-org)
@@ -97,7 +98,6 @@
 ;; (require 'setup-cc)
 ;; (require 'setup-haskell)
 ;; (require 'setup-python)
-;; (require 'setup-tex)
 ;; (require 'setup-origami)
 ;; (require 'setup-duplicate-line)
 ;; (require 'setup-white-space)
