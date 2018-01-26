@@ -58,6 +58,9 @@
 (require 'setup-zygospore)
 (require 'setup-anzu)
 (require 'setup-tex)
+(require 'setup-js)
+(require 'setup-typescript)
+
 
 ;; (require 'setup-osx)
 ;; (require 'setup-org)
