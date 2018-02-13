@@ -33,6 +33,7 @@
     2048-game
     anzu
     auto-complete
+    beacon
     browse-kill-ring
     clean-aindent-mode
     color-theme-modern
@@ -60,6 +61,7 @@
     multiple-cursors
     php-auto-yasnippets
     php-mode
+    prettier-js
     projectile
     restclient
     restclient-helm
@@ -323,8 +325,31 @@ ARG argument is unkown"
     (nxml-mode)
     (indent-region 0 (count-lines (point-min) (point-max)))))
 
+(defun indent-marked-files ()
+  "Autoindent all selected files."
+  (interactive)
+  (dolist (file (dired-get-marked-files))
+    (find-file file)
+    (indent-region (point-min) (point-max))
+    (save-buffer)
+    (kill-buffer nil)))
+
 ;; Enable magit-svn extension
 (add-hook 'magit-mode-hook 'magit-svn-mode)
+
+(beacon-mode)
+(setq beacon-size 25)
+(add-to-list 'beacon-dont-blink-major-modes 'comint-mode)
+
+(require 'prettier-js)
+
+(add-hook 'tide-mode-hook 'prettier-js-mode)
+(add-hook 'js2-mode-hook 'prettier-js-mode)
+
+;; (setq prettier-js-args '(
+;;   "--single-quote" "true"
+;;   "--print-width" "140"
+;; ))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -333,7 +358,7 @@ ARG argument is unkown"
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (magit-svn zygospore yasnippet ws-butler volatile-highlights undo-tree tide tern-auto-complete smartparens scss-mode sass-mode projectile markdown-mode magit json-mode js2-mode iedit helm-css-scss ggtags exec-path-from-shell editorconfig duplicate-thing dtrt-indent company comment-dwim-2 color-theme-modern clean-aindent-mode browse-kill-ring anzu 2048-game))))
+    (beacon-mode magit-svn zygospore yasnippet ws-butler volatile-highlights undo-tree tide tern-auto-complete smartparens scss-mode sass-mode projectile markdown-mode magit json-mode js2-mode iedit helm-css-scss ggtags exec-path-from-shell editorconfig duplicate-thing dtrt-indent company comment-dwim-2 color-theme-modern clean-aindent-mode browse-kill-ring anzu 2048-game))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
