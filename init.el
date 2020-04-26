@@ -69,6 +69,7 @@
 (require 'setup-zygospore)
 (require 'setup-duplicate-thing)
 (require 'setup-smartparens)
+(require 'setup-anzu)
 
 ;; END setup files
 
@@ -105,7 +106,6 @@
 ;; (defconst demo-packages
 ;;   '(
 ;;     2048-game
-;;     anzu
 ;;     auto-complete
 ;;     clean-aindent-mode
 ;;     color-theme-modern
@@ -264,8 +264,6 @@
 
 ;; (require 'editorconfig)
 ;; (editorconfig-mode 1)
-
-;; (global-anzu-mode +1)
 
 ;; (when (memq window-system '(mac ns x))
 ;;   (exec-path-from-shell-initialize))
