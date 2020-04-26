@@ -73,6 +73,11 @@
 (require 'setup-emmet)
 (require 'setup-editorconfig)
 (require 'setup-games)
+(require 'setup-typescript)
+(require 'setup-js)
+(require 'setup-json)
+(require 'setup-lsp)
+
 
 ;; END setup files
 
@@ -102,7 +107,6 @@
 
 ;; (defconst demo-packages
 ;;   '(
-;;     2048-game
 ;;     auto-complete
 ;;     clean-aindent-mode
 ;;     color-theme-modern
@@ -233,9 +237,9 @@
 ;; (add-hook 'tide-mode-hook 'prettier-js-mode)
 ;; (add-hook 'js2-mode-hook 'prettier-js-mode)
 
-;; ;; (setq prettier-js-args '(
-;; ;;   "--single-quote" "true"
-;; ;;   "--print-width" "140"
-;; ;; ))
+(setq prettier-js-args '(
+  "--single-quote" "true"
+  "--print-width" "140"
+))
 
 ;; ;;; init.el ends here
