@@ -64,6 +64,7 @@
 (require 'setup-linum)
 ;; (require 'setup-beacon)
 (require 'setup-highlight)
+(require 'setup-git-stuff)
 
 ;; END setup files
 
