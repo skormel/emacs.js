@@ -59,6 +59,7 @@
 (require 'setup-no-littering)
 (require 'setup-hydra)
 (require 'setup-editor)
+(require 'setup-global)
 (require 'setup-theme)
 (require 'setup-org)
 (require 'setup-linum)
@@ -240,8 +241,6 @@
 
 ;; ;; Package zygospore
 ;; (global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows)
-;; (global-set-key (kbd "C-x g") 'magit-status)
-;; (global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
 
 ;; (global-set-key (kbd "C-x a i") 'indent-region)  ; automatically indent when press
 ;; (global-set-key (kbd "C-x a c") 'comment-region)  ; automatically indent when press RET
@@ -411,9 +410,6 @@
 ;;     (indent-region (point-min) (point-max))
 ;;     (save-buffer)
 ;;     (kill-buffer nil)))
-
-;; ;; Enable magit-svn extension
-;; (add-hook 'magit-mode-hook 'magit-svn-mode)
 
 ;; (require 'prettier-js)
 
