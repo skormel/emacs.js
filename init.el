@@ -32,6 +32,16 @@
 (defvar user-home-directory (concat (getenv "HOME") "/"))
 (setq user-emacs-directory (concat user-home-directory ".emacs.d/"))
 
+;; save custom file to a separate directory
+(setq custom-file (concat user-emacs-directory "my-elisp-code/custom-settings.el"))
+(load custom-file :noerror :nomessage) ; load custom-file silently
+(load (locate-user-emacs-file "general.el") nil :nomessage)
+
+;; run package-initialize if running emacs version < 27
+(>=e "27.0"
+    nil
+  (package-initialize))
+
 
 
 ;; ;;; package --- Summary
