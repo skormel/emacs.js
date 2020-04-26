@@ -57,6 +57,8 @@
 ;; Install al setup files here
 (require 'setup-optimizations)
 (require 'setup-no-littering)
+(require 'setup-hydra)
+(require 'setup-theme)
 (require 'setup-org)
 
 
@@ -437,17 +439,3 @@
 ;; ;;   "--print-width" "140"
 ;; ;; ))
 
-;; ;;; init.el ends here
-;; (custom-set-variables
-;;  ;; custom-set-variables was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(package-selected-packages
-;;    '(docker-compose-mode pug-mode zygospore ws-butler web-mode volatile-highlights undo-tree tide tern-auto-complete smartparens scss-mode sass-mode restclient-helm projectile prettier-js php-auto-yasnippets markdown-mode magit-svn json-mode js2-refactor iedit helm-css-scss haskell-mode ggtags exec-path-from-shell emmet-mode editorconfig duplicate-thing dtrt-indent company comment-dwim-2 color-theme-modern clean-aindent-mode browse-kill-ring beacon anzu 2048-game)))
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  )
