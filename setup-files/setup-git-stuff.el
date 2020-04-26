@@ -16,7 +16,7 @@
                ([remap previous-line] . magit-previous-line))
          (:map dired-mode-map
                ("l" . magit-dired-log)))
-  :bind* (("C-c p v" . magit-status))
+  :bind* (("C-x g" . magit-status))
   :config
   ;; Enable the binding for magit-file=popup
   (global-magit-file-mode 1)
