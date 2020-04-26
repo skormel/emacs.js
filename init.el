@@ -68,6 +68,7 @@
 (require 'setup-git-stuff)
 (require 'setup-zygospore)
 (require 'setup-duplicate-thing)
+(require 'setup-smartparens)
 
 ;; END setup files
 
@@ -93,17 +94,6 @@
 
 
 ;; OLD CONFIG
-
-;; ;;; package --- Summary
-;; ;;; Commentary:
-;; ;;; Code:
-
-
-;; ;; Set this varibles to make elpa works with PROXY
-;; ;; (setq url-proxy-services
-;; ;;       '(("no-proxy" . "^\\(localhost|10.*\\)")
-;; ;;     ("http" . "dns:port")
-;; ;;     ("https" . "dns:port")))
 
 ;; (require 'package)
 ;; (add-to-list 'package-archives
@@ -142,8 +132,6 @@
 ;;     magit-svn
 ;;     markdown-mode
 ;;     multiple-cursors
-;;     php-auto-yasnippets
-;;     php-mode
 ;;     prettier-js
 ;;     projectile
 ;;     pug-mode
