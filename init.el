@@ -117,7 +117,6 @@
 ;;     2048-game
 ;;     anzu
 ;;     auto-complete
-;;     browse-kill-ring
 ;;     clean-aindent-mode
 ;;     color-theme-modern
 ;;     comment-dwim-2
@@ -125,7 +124,6 @@
 ;;     docker
 ;;     dockerfile-mode
 ;;     dtrt-indent
-;;     duplicate-thing
 ;;     editorconfig
 ;;     emmet-mode
 ;;     exec-path-from-shell
@@ -365,10 +363,6 @@
 ;; (when (memq window-system '(mac ns x))
 ;;   (exec-path-from-shell-initialize))
 
-;; ;; Enable browse-kill-ring
-;; (require 'browse-kill-ring)
-;; (browse-kill-ring-default-keybindings)
-
 ;; (require 'emmet-mode)
 ;; (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
 ;; (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
@@ -380,8 +374,6 @@
 ;; (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 ;; (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 ;; (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-
-;; (global-set-key (kbd "C-c C-d") 'duplicate-thing)
 
 
 ;; (require 's)
