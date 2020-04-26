@@ -4,6 +4,13 @@
 ;; Copyright (C) 2016-2018 Chakravarthy Raghunandan
 ;; Author: Chakravarthy Raghunandan <rnraghunandan@gmail.com>
 
+
+;; Set this varibles to make elpa works with PROXY
+;; (setq url-proxy-services
+;;       '(("no-proxy" . "^\\(localhost|10.*\\)")
+;;     ("http" . "dns:port")
+;;     ("https" . "dns:port")))
+
 ;; Every file opened and loaded by Emacs will run through this list to check for
 ;; a proper handler for the file, but during startup, it won’t need any of them.
 (defvar rag--file-name-handler-alist file-name-handler-alist)

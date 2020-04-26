@@ -1,8 +1,22 @@
+# elpa packages
+elpa/
+
+# ignore the quickstart autoloads file
+package-quickstart.el
+
+# ignore var directory
+var/*
+!var/abbrev.el
+!var/mc-lists.el
+!var/bookmark-default.el
+
+command-log/
+
+# My ignore patterns
 ac-comphist.dat
 auto-save-list/**
 tramp
 projectile-bookmarks.eld
-elpa/**
 eshell/**
 **~
 \#**
