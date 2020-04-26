@@ -10,6 +10,7 @@
 (use-package magit
   :defer 2
   :bind (("C-c v c" . magit-clone)
+         ("C-c m b" . magit-blame)
          :map magit-status-mode-map
          ("Q" . mu-magit-kill-buffers)
          (:map magit-mode-map
