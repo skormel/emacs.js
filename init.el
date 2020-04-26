@@ -70,9 +70,8 @@
 (require 'setup-duplicate-thing)
 (require 'setup-smartparens)
 (require 'setup-anzu)
-
+(require 'setup-helm)
 ;; END setup files
-
 
 ;; install all packages (if they already not installed by use-package)
 (package-install-selected-packages)
@@ -120,9 +119,6 @@
 ;;     flycheck
 ;;     ggtags
 ;;     haskell-mode
-;;     helm
-;;     helm-core
-;;     helm-css-scss
 ;;     iedit
 ;;     js2-mode
 ;;     js2-refactor
@@ -136,7 +132,6 @@
 ;;     projectile
 ;;     pug-mode
 ;;     restclient
-;;     restclient-helm
 ;;     s
 ;;     sass-mode
 ;;     scss-mode
@@ -153,19 +148,6 @@
 ;;     yasnippet
 ;;     ))
 
-;; ;; Load custom scripts from custom directory
-;; (add-to-list 'load-path "~/.emacs.d/custom")
-
-;; (require 'helm-config)
-;; (helm-mode 1)
-
-;; (define-key global-map [remap find-file] 'helm-find-files)
-;; (define-key global-map [remap occur] 'helm-occur)
-;; (define-key global-map [remap list-buffers] 'helm-buffers-list)
-;; (define-key global-map [remap dabbrev-expand] 'helm-dabbrev)
-;; (global-set-key (kbd "M-x") 'helm-M-x)
-;; (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
-;; (define-key helm-map (kbd "C-z") 'helm-select-action)
 
 ;; ;; Package: clean-aindent-mode
 ;; (require 'clean-aindent-mode)
@@ -199,12 +181,8 @@
 ;;               (append flycheck-disabled-checkers
 ;;                       '(javascript-eslint)))
 
-;; (require 'restclient)
-
 ;; (require 'auto-complete-config)
 ;; (ac-config-default)
-;; (require 'php-auto-yasnippets)
-;; (define-key php-mode-map (kbd "C-c C-y") 'yas/create-php-snippet)
 ;; ;;(payas/ac-setup)
 
 ;; (defun setup-tide-mode ()
@@ -231,24 +209,6 @@
 
 ;; ;; format options
 ;; (setq tide-format-options '(:insertSpaceAfterFunctionKeywordForAnonymousFunctions t :placeOpenBraceOnNewLineForFunctions nil))
-
-;; (require 'helm-css-scss)
-;; ;; Allow comment inserting depth at each of a brace
-;; (setq helm-css-scss-insert-close-comment-depth 2)
-;; ;; If this value is t, split window appers inside the current windows
-;; (setq helm-css-scss-split-with-multiple-windows nil)
-;; ;; Split direction. 'split-window-vertically or 'split-window-horizontally
-;; (setq helm-css-scss-insert-split-direction 'split-window-vertically)
-
-;; ;; Set local keybind map for css-mode / scss-mode / less-css-mode
-;; (dolist ($hook '(css-mode-hook scss-mode-hook less-css-mode-hook))
-;;   (add-hook
-;;    $hook (lambda ()
-;;            (local-set-key (kbd "s-i") 'helm-css-scss)
-;;            (local-set-key (kbd "s-I") 'helm-css-scss-back-to-last-point))))
-
-;; (define-key isearch-mode-map (kbd "s-i") 'helm-css-scss-from-isearch)
-;; (define-key isearch-mode-map (kbd "s-i") 'helm-css-scss-multi-from-helm-css-scss)
 
 ;; (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 ;; (add-hook 'js2-mode-hook '(lambda ()
