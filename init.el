@@ -67,6 +67,7 @@
 (require 'setup-highlight)
 (require 'setup-git-stuff)
 (require 'setup-zygospore)
+(require 'setup-duplicate-thing)
 
 ;; END setup files
 
