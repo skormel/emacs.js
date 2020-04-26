@@ -71,6 +71,7 @@
 (require 'setup-smartparens)
 (require 'setup-anzu)
 (require 'setup-helm)
+(require 'setup-emmet)
 ;; END setup files
 
 ;; install all packages (if they already not installed by use-package)
@@ -114,7 +115,6 @@
 ;;     dockerfile-mode
 ;;     dtrt-indent
 ;;     editorconfig
-;;     emmet-mode
 ;;     exec-path-from-shell
 ;;     flycheck
 ;;     ggtags
@@ -228,12 +228,6 @@
 ;; (when (memq window-system '(mac ns x))
 ;;   (exec-path-from-shell-initialize))
 
-;; (require 'emmet-mode)
-;; (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
-;; (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
-;; (global-set-key (kbd "C-c C-d") 'emmet-expand-line)
-
-
 ;; (require 'multiple-cursors)
 ;; (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 ;; (global-set-key (kbd "C->") 'mc/mark-next-like-this)
@@ -242,7 +236,6 @@
 
 
 ;; (require 's)
-
 
 ;; (require 'sgml-mode)
 
