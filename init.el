@@ -66,6 +66,7 @@
 ;; (require 'setup-beacon)
 (require 'setup-highlight)
 (require 'setup-git-stuff)
+(require 'setup-zygospore)
 
 ;; END setup files
 
