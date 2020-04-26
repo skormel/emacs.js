@@ -53,7 +53,6 @@
 ;; load all use-package related configuration
 (load (locate-user-emacs-file "setup-packages.el") nil :nomessage)
 
-
 ;; Install al setup files here
 (require 'setup-optimizations)
 (require 'setup-no-littering)
@@ -72,6 +71,9 @@
 (require 'setup-anzu)
 (require 'setup-helm)
 (require 'setup-emmet)
+(require 'setup-editorconfig)
+(require 'setup-games)
+
 ;; END setup files
 
 ;; install all packages (if they already not installed by use-package)
@@ -96,11 +98,6 @@
 
 ;; OLD CONFIG
 
-;; (require 'package)
-;; (add-to-list 'package-archives
-;;              '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;; (package-initialize)
-
 ;; (setq gc-cons-threshold 100000000)
 
 ;; (defconst demo-packages
@@ -114,7 +111,6 @@
 ;;     docker
 ;;     dockerfile-mode
 ;;     dtrt-indent
-;;     editorconfig
 ;;     exec-path-from-shell
 ;;     flycheck
 ;;     ggtags
@@ -124,8 +120,6 @@
 ;;     js2-refactor
 ;;     json-mode
 ;;     json-snatcher
-;;     magit
-;;     magit-svn
 ;;     markdown-mode
 ;;     multiple-cursors
 ;;     prettier-js
@@ -133,8 +127,6 @@
 ;;     pug-mode
 ;;     restclient
 ;;     s
-;;     sass-mode
-;;     scss-mode
 ;;     seq
 ;;     tern
 ;;     tern-auto-complete
@@ -221,9 +213,6 @@
 ;;      (require 'tern-auto-complete)
 ;;      (tern-ac-setup)))
 
-
-;; (require 'editorconfig)
-;; (editorconfig-mode 1)
 
 ;; (when (memq window-system '(mac ns x))
 ;;   (exec-path-from-shell-initialize))
