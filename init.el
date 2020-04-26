@@ -114,8 +114,8 @@
 (define-key helm-map (kbd "C-z") 'helm-select-action)
 
 (require 'php-mode)
-(eval-after-load 'php-mode
-  '(require 'php-ext))
+;; (eval-after-load 'php-mode
+;;   '(require 'php-ext))
 
 
 (global-set-key (kbd "RET") 'newline-and-indent)  ; automatically indent when press RET
@@ -361,8 +361,7 @@ ARG argument is unkown"
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   (quote
-    (pug-mode zygospore ws-butler web-mode volatile-highlights undo-tree tide tern-auto-complete smartparens scss-mode sass-mode restclient-helm projectile prettier-js php-auto-yasnippets markdown-mode magit-svn json-mode js2-refactor iedit helm-css-scss haskell-mode ggtags exec-path-from-shell emmet-mode editorconfig duplicate-thing dtrt-indent company comment-dwim-2 color-theme-modern clean-aindent-mode browse-kill-ring beacon anzu 2048-game))))
+   '(docker-compose-mode pug-mode zygospore ws-butler web-mode volatile-highlights undo-tree tide tern-auto-complete smartparens scss-mode sass-mode restclient-helm projectile prettier-js php-auto-yasnippets markdown-mode magit-svn json-mode js2-refactor iedit helm-css-scss haskell-mode ggtags exec-path-from-shell emmet-mode editorconfig duplicate-thing dtrt-indent company comment-dwim-2 color-theme-modern clean-aindent-mode browse-kill-ring beacon anzu 2048-game)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
