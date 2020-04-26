@@ -14,8 +14,14 @@
 ;; use space to indent by default
 (setq-default indent-tabs-mode nil)
 
+;; ;; set appearance of a tab that is represented by 4 spaces
+(setq-default tab-width 4)
+
 ;; show unncessary whitespace that can mess up your diff
 (add-hook 'prog-mode-hook (lambda () (interactive) (setq show-trailing-whitespace 1)))
+
+;; allow to switch from frames with shift + arrow key
+(windmove-default-keybindings)
 
 (defun indent-buffer ()
   "Indent full Buffer."

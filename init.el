@@ -141,7 +141,6 @@
 ;;     sass-mode
 ;;     scss-mode
 ;;     seq
-;;     smartparens
 ;;     tern
 ;;     tern-auto-complete
 ;;     tide
@@ -152,21 +151,7 @@
 ;;     with-editor
 ;;     ws-butler
 ;;     yasnippet
-;;     zygospore
 ;;     ))
-
-;; (defun install-packages ()
-;;   "Install all required packages."
-;;   (interactive)
-;;   (unless package-archive-contents
-;;     (package-refresh-contents))
-;;   (dolist (package demo-packages)
-;;     (unless (package-installed-p package)
-;;       (package-install package))))
-
-;; (install-packages)
-
-;; (windmove-default-keybindings)
 
 ;; ;; Load custom scripts from custom directory
 ;; (add-to-list 'load-path "~/.emacs.d/custom")
@@ -181,20 +166,6 @@
 ;; (global-set-key (kbd "M-x") 'helm-M-x)
 ;; (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
 ;; (define-key helm-map (kbd "C-z") 'helm-select-action)
-
-;; (global-set-key (kbd "RET") 'newline-and-indent)  ; automatically indent when press RET
-
-;; ;; activate whitespace-mode to view all whitespace characters
-;; (global-set-key (kbd "C-c w") 'whitespace-mode)
-
-;; ;; show unncessary whitespace that can mess up your diff
-;; (add-hook 'prog-mode-hook (lambda () (interactive) (setq show-trailing-whitespace 1)))
-
-;; ;; use space to indent by default
-;; (setq-default indent-tabs-mode nil)
-
-;; ;; set appearance of a tab that is represented by 4 spaces
-;; (setq-default tab-width 4)
 
 ;; ;; Package: clean-aindent-mode
 ;; (require 'clean-aindent-mode)
@@ -212,30 +183,10 @@
 ;; (require 'yasnippet)
 ;; (yas-global-mode 1)
 
-;; ;; Package: smartparens
-;; (require 'smartparens-config)
-;; (setq sp-base-key-bindings 'paredit)
-;; (setq sp-autoskip-closing-pair 'always)
-;; (setq sp-hybrid-kill-entire-symbol nil)
-;; (sp-use-paredit-bindings)
-
-;; (show-smartparens-global-mode +1)
-;; (smartparens-global-mode 1)
-
 ;; ;; Package: projectile
 ;; (require 'projectile)
 ;; (projectile-mode)
 ;; (setq projectile-enable-caching t)
-
-;; ;; Package zygospore
-;; (global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows)
-
-;; (global-set-key (kbd "C-x a i") 'indent-region)  ; automatically indent when press
-;; (global-set-key (kbd "C-x a c") 'comment-region)  ; automatically indent when press RET
-;; (global-set-key (kbd "C-x a u c") 'uncomment-region)  ; automatically indent when press RET
-
-;; (load-theme 'arjen t t)
-;; (enable-theme 'arjen)
 
 ;; ;; http://www.flycheck.org/manual/latest/index.html
 ;; (require 'flycheck)
@@ -255,28 +206,6 @@
 ;; (require 'php-auto-yasnippets)
 ;; (define-key php-mode-map (kbd "C-c C-y") 'yas/create-php-snippet)
 ;; ;;(payas/ac-setup)
-
-;; (defun transpose-windows (arg)
-;;   "Transpose the buffers shown in two windows.
-;; ARG argument is unkown"
-;;   (interactive "p")
-;;   (let ((selector (if (>= arg 0) 'next-window 'previous-window)))
-;;     (while (/= arg 0)
-;;       (let ((this-win (window-buffer))
-;;             (next-win (window-buffer (funcall selector))))
-;;         (set-window-buffer (selected-window) next-win)
-;;         (set-window-buffer (funcall selector) this-win)
-;;         (select-window (funcall selector)))
-;;       (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
-
-;; (define-key ctl-x-4-map (kbd "t") 'transpose-windows)
-
-;; (defun kill-other-buffers ()
-;;   "Kill all other buffers."
-;;   (interactive)
-;;   (mapc 'kill-buffer
-;;         (delq (current-buffer)
-;;               (remove-if-not 'buffer-file-name (buffer-list)))))
 
 ;; (defun setup-tide-mode ()
 ;;   "Setup for tide-mode."
@@ -302,16 +231,6 @@
 
 ;; ;; format options
 ;; (setq tide-format-options '(:insertSpaceAfterFunctionKeywordForAnonymousFunctions t :placeOpenBraceOnNewLineForFunctions nil))
-
-
-;; (defun indent-buffer ()
-;;   "Indent full Buffer."
-;;   (interactive)
-;;   (delete-trailing-whitespace)
-;;   (indent-region (point-min) (point-max) nil)
-;;   (untabify (point-min) (point-max)))
-
-;; (global-set-key (kbd "C-x a b") 'indent-buffer)
 
 ;; (require 'helm-css-scss)
 ;; ;; Allow comment inserting depth at each of a brace
@@ -368,21 +287,6 @@
 
 
 ;; (require 'sgml-mode)
-
-;; (defun reformat-xml ()
-;;   "Format xml."
-;;   (interactive)
-;;   (save-excursion
-;;     (sgml-pretty-print (point-min) (point-max))
-;;     (indent-region (point-min) (point-max))))
-
-;; (defun nxml-pretty-format ()
-;;   "Format xml."
-;;   (interactive)
-;;   (save-excursion
-;;     (shell-command-on-region (point-min) (point-max) "xmllint --format -" (buffer-name) t)
-;;     (nxml-mode)
-;;     (indent-region 0 (count-lines (point-min) (point-max)))))
 
 ;; (defun indent-marked-files ()
 ;;   "Autoindent all selected files."
