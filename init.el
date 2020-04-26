@@ -50,6 +50,36 @@
   (package-initialize))
 
 
+;; load all use-package related configuration
+(load (locate-user-emacs-file "setup-packages.el") nil :nomessage)
+
+
+;; Install al setup files here
+(require 'setup-optimizations)
+(require 'setup-no-littering)
+(require 'setup-org)
+
+
+;; END setup files
+
+
+;; install all packages (if they already not installed by use-package)
+(package-install-selected-packages)
+
+;; start emacs server only it has not already been started
+(require 'server)
+(unless (server-running-p) (server-start))
+
+;; set gc-cons-threshold back to original value
+(setq file-name-handler-alist rag--file-name-handler-alist
+      gc-cons-threshold 16777216 ;; use 16MB
+      gc-cons-percentage 0.1)
+;; enable gchm mode
+(gcmh-mode +1)
+;; garbage collect when moving out to other applications
+(add-function :after after-focus-change-function #'gcmh-idle-garbage-collect)
+
+;;; init.el ends here
 
 ;; ;;; package --- Summary
 ;; ;;; Commentary:
