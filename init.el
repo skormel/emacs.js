@@ -58,9 +58,12 @@
 (require 'setup-optimizations)
 (require 'setup-no-littering)
 (require 'setup-hydra)
+(require 'setup-editor)
 (require 'setup-theme)
 (require 'setup-org)
-
+(require 'setup-linum)
+;; (require 'setup-beacon)
+(require 'setup-highlight)
 
 ;; END setup files
 
@@ -83,6 +86,10 @@
 
 ;;; init.el ends here
 
+
+
+;; OLD CONFIG
+
 ;; ;;; package --- Summary
 ;; ;;; Commentary:
 ;; ;;; Code:
@@ -100,25 +107,12 @@
 ;; (package-initialize)
 
 ;; (setq gc-cons-threshold 100000000)
-;; (setq inhibit-startup-message t)
-
-;; (defalias 'yes-or-no-p 'y-or-n-p)
-
-;; (require 'linum)
-;; (setq linum-format "%d ")
-;; (add-hook 'find-file-hook (lambda () (linum-mode 1)))
-
-;; (menu-bar-mode 0)
-;; (scroll-bar-mode 0)
-;; (tool-bar-mode 0)
-;; (setq column-number-mode t)
 
 ;; (defconst demo-packages
 ;;   '(
 ;;     2048-game
 ;;     anzu
 ;;     auto-complete
-;;     beacon
 ;;     browse-kill-ring
 ;;     clean-aindent-mode
 ;;     color-theme-modern
@@ -197,11 +191,6 @@
 ;; (global-set-key (kbd "M-x") 'helm-M-x)
 ;; (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
 ;; (define-key helm-map (kbd "C-z") 'helm-select-action)
-
-;; (require 'php-mode)
-;; ;; (eval-after-load 'php-mode
-;; ;;   '(require 'php-ext))
-
 
 ;; (global-set-key (kbd "RET") 'newline-and-indent)  ; automatically indent when press RET
 
@@ -425,10 +414,6 @@
 ;; ;; Enable magit-svn extension
 ;; (add-hook 'magit-mode-hook 'magit-svn-mode)
 
-;; (beacon-mode)
-;; (setq beacon-size 25)
-;; (add-to-list 'beacon-dont-blink-major-modes 'comint-mode)
-
 ;; (require 'prettier-js)
 
 ;; (add-hook 'tide-mode-hook 'prettier-js-mode)
@@ -439,3 +424,4 @@
 ;; ;;   "--print-width" "140"
 ;; ;; ))
 
+;; ;;; init.el ends here
