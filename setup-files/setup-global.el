@@ -69,6 +69,15 @@ ARG argument is unkown"
     (nxml-mode)
     (indent-region 0 (count-lines (point-min) (point-max)))))
 
+(defun indent-marked-files ()
+  "Autoindent all selected files."
+  (interactive)
+  (dolist (file (dired-get-marked-files))
+    (find-file file)
+    (indent-region (point-min) (point-max))
+    (save-buffer)
+    (kill-buffer nil)))
+
 (provide 'setup-global)
 
 ;;; setup-global.el ends here

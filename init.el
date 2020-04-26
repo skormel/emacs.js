@@ -239,15 +239,6 @@
 
 ;; (require 'sgml-mode)
 
-;; (defun indent-marked-files ()
-;;   "Autoindent all selected files."
-;;   (interactive)
-;;   (dolist (file (dired-get-marked-files))
-;;     (find-file file)
-;;     (indent-region (point-min) (point-max))
-;;     (save-buffer)
-;;     (kill-buffer nil)))
-
 ;; (require 'prettier-js)
 
 ;; (add-hook 'tide-mode-hook 'prettier-js-mode)
