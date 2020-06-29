@@ -53,6 +53,7 @@
     helm-core
     helm-css-scss
     iedit
+    indium
     js2-mode
     js2-refactor
     json-mode
@@ -68,6 +69,7 @@
     pug-mode
     restclient
     restclient-helm
+    rustic
     s
     sass-mode
     scss-mode
@@ -82,6 +84,7 @@
     web-mode
     with-editor
     ws-butler
+    yaml-mode
     yasnippet
     zygospore
     ))
@@ -114,8 +117,8 @@
 (define-key helm-map (kbd "C-z") 'helm-select-action)
 
 (require 'php-mode)
-(eval-after-load 'php-mode
-  '(require 'php-ext))
+;; (eval-after-load 'php-mode
+;;   '(require 'php-ext))
 
 
 (global-set-key (kbd "RET") 'newline-and-indent)  ; automatically indent when press RET
@@ -337,6 +340,13 @@ ARG argument is unkown"
     (save-buffer)
     (kill-buffer nil)))
 
+
+(defun remove-dos-eol ()
+  "Do not show ^M in files containing mixed UNIX and DOS line endings."
+  (interactive)
+  (setq buffer-display-table (make-display-table))
+  (aset buffer-display-table ?\^M []))
+
 ;; Enable magit-svn extension
 (add-hook 'magit-mode-hook 'magit-svn-mode)
 
@@ -354,6 +364,11 @@ ARG argument is unkown"
 ;;   "--print-width" "140"
 ;; ))
 
+;; Set custom font
+(set-face-font 'menu "-PfEd-DejaVu Sans Mono-normal-normal-normal-*-17-*-*-*-m-0-iso10646-1")
+(set-face-font 'default "-PfEd-DejaVu Sans Mono-normal-normal-normal-*-17-*-*-*-m-0-iso10646-1")
+
+
 ;;; init.el ends here
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -361,8 +376,7 @@ ARG argument is unkown"
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   (quote
-    (pug-mode zygospore ws-butler web-mode volatile-highlights undo-tree tide tern-auto-complete smartparens scss-mode sass-mode restclient-helm projectile prettier-js php-auto-yasnippets markdown-mode magit-svn json-mode js2-refactor iedit helm-css-scss haskell-mode ggtags exec-path-from-shell emmet-mode editorconfig duplicate-thing dtrt-indent company comment-dwim-2 color-theme-modern clean-aindent-mode browse-kill-ring beacon anzu 2048-game))))
+   '(lsp-mode indium docker-compose-mode pug-mode zygospore ws-butler web-mode volatile-highlights undo-tree tide tern-auto-complete smartparens scss-mode sass-mode restclient-helm projectile prettier-js php-auto-yasnippets markdown-mode magit-svn json-mode js2-refactor iedit helm-css-scss haskell-mode ggtags exec-path-from-shell emmet-mode editorconfig duplicate-thing dtrt-indent company comment-dwim-2 color-theme-modern clean-aindent-mode browse-kill-ring beacon anzu 2048-game)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
