@@ -4,6 +4,7 @@
 (tool-bar-mode 0)
 (setq column-number-mode t)
 (defalias 'yes-or-no-p 'y-or-n-p)
+(global-display-line-numbers-mode)
 
 ;; ;; Enable browse-kill-ring
 (use-package browse-kill-ring

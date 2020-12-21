@@ -61,7 +61,7 @@
 (require 'setup-global)
 (require 'setup-theme)
 (require 'setup-org)
-(require 'setup-linum)
+;; (require 'setup-linum)
 ;; (require 'setup-beacon)
 (require 'setup-highlight)
 (require 'setup-git-stuff)
@@ -71,12 +71,14 @@
 (require 'setup-anzu)
 (require 'setup-helm)
 (require 'setup-emmet)
+(require 'setup-haskell)
 (require 'setup-editorconfig)
 (require 'setup-games)
 (require 'setup-typescript)
 (require 'setup-js)
 (require 'setup-json)
 (require 'setup-lsp)
+(require 'setup-docker)
 
 
 ;; END setup files
