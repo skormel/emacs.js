@@ -79,7 +79,7 @@
 (require 'setup-json)
 (require 'setup-lsp)
 (require 'setup-docker)
-
+(require 'setup-kubernetes)
 
 ;; END setup files
 
