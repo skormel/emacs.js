@@ -4,6 +4,7 @@
 
 (use-package helm
   :defer nil
+  :straight t
   :config
   (require 'helm-config)
   (helm-mode 1)
@@ -18,11 +19,13 @@
 
 (use-package helm-core
   :defer nil
+  :straight t
   :config
   )
 
 (use-package helm-css-scss
   :defer nil
+  :straight t
   :config
   ;; Allow comment inserting depth at each of a brace
   (setq helm-css-scss-insert-close-comment-depth 2)
