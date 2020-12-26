@@ -400,7 +400,6 @@
     ("frmo" "from" nil :count 0)
     ("fromt he" "from the" nil :count 0)
     ("fromthe" "from the" nil :count 0)
-    ("func" "function" nil :count 63)
     ("functionalties" "functionalities" nil :count 0)
     ("funtionality" "functionality" nil :count 0)
     ("furneral" "funeral" nil :count 0)
@@ -661,7 +660,6 @@
     ("perscriptions" "prescriptions" nil :count 0)
     ("personalyl" "personally" nil :count 0)
     ("pleasent" "pleasant" nil :count 0)
-    ("plugin" "plug-in" nil :count 2)
     ("poeple" "people" nil :count 0)
     ("porblem" "problem" nil :count 0)
     ("porblems" "problems" nil :count 0)
@@ -708,6 +706,7 @@
     ("reccommend" "recommend" nil :count 0)
     ("receieve" "receive" nil :count 0)
     ("recepie" "recipe" nil :count 0)
+    ("reciepents" "recipients" nil :count 0)
     ("recieve" "receive" nil :count 0)
     ("recieved" "received" nil :count 1)
     ("recieving" "receiving" nil :count 0)
@@ -990,3 +989,4 @@
   '(
     ("i" "I" nil :count 49)
    ))
+

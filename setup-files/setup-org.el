@@ -1,19 +1,18 @@
 ;;; setup-org.el -*- lexical-binding: t; -*-
-;; Time-stamp: <2020-04-14 20:35:01 csraghunandan>
+;; Time-stamp: <2020-08-21 17:29:42 csraghunandan>
 
 ;; Copyright (C) 2016-2020 Chakravarthy Raghunandan
 ;; Author: Chakravarthy Raghunandan <rnraghunandan@gmail.com>
 
 ;; Org-mode configuration
 ;; http://orgmode.org/
-(use-package org
-  :defer 2
-  :ensure nil
+(use-package org-plus-contrib
   :hook
   ((org-mode . org-num-mode)
    (org-mode . (lambda () ;; this will make sure auto-fill works for org-mode
                  (setq-local comment-auto-fill-only-comments nil)
-                 (setq-local display-line-numbers-type 'absolute))))
+                 (setq-local display-line-numbers-type 'absolute)
+                 (setq-local org-use-speed-commands t))))
   :preface
   ;; Modules that should always be loaded together with org.el.
   ;; `org-modules' default: (ol-w3m ol-bbdb ol-bibtex ol-docview ol-gnus ol-info
@@ -22,7 +21,7 @@
 
   ;; Set my default org-export backends. This variable needs to be set before
   ;; org.el is loaded.
-  (setq org-export-backends '(ascii html latex md gfm odt))
+  (setq org-export-backends '(ascii html latex md odt))
 
   :config
 
@@ -134,21 +133,6 @@
   ;; clock into a drawer called CLOCKING
   (setq org-clock-into-drawer "CLOCKING")
 
-  ;; ob-http: make http requests with org-mode babel
-  ;; https://github.com/zweifisch/ob-http
-  (use-package ob-http)
-
-  ;; plantuml configuration
-  (use-package ob-plantuml :ensure nil
-    :commands
-    (org-babel-execute:plantuml)
-    :config
-    (setq org-plantuml-jar-path (expand-file-name "/usr/share/java/plantuml/plantuml.jar")))
-
-  ;;  Supercharge your Org daily/weekly agenda by grouping items
-  ;; https://github.com/alphapapa/org-super-agenda
-  (use-package org-super-agenda)
-
   ;; syntax highlight for code-blocks in org-mode PDF export
   (require 'ox-latex)
   (add-to-list 'org-latex-packages-alist '("" "minted"))
@@ -165,7 +149,6 @@
      (shell . t)
      (latex . t)
      (css . t)
-     (http . t)
      (C . t)
      (haskell . t)
      (js . t)
@@ -198,8 +181,6 @@
   ;; string is wrapped in braces
   (setq org-use-sub-superscripts '{}) ; in-buffer rendering
 
-  (setq org-use-speed-commands t) ; ? speed-key opens Speed Keys help
-  (setq org-speed-commands-user '(("m" . org-mark-subtree)))
   ;; heading leading stars for headlines
   (setq org-hide-leading-stars t)
 
@@ -320,28 +301,6 @@ function is ever added to that hook."
    :filter (org-at-table-p)
    ("S-SPC" . hydra-org-table-mark-field/body))
 
-  (use-package langtool :defer 1
-    :config
-    ;; place the language-tool directory in $HOME
-    (setq langtool-language-tool-jar
-          (concat user-home-directory "/usr/share/java/languagetool/languagetool-commandline.jar"))
-    (setq langtool-default-language "en-GB")
-
-    ;; hydra for langtool check
-    (defhydra hydra-langtool (:color pink
-                                     :hint nil)
-      "
-_c_: check    _n_: next error
-_C_: correct  _p_: prev error _d_: done checking
-"
-      ("n"  langtool-goto-next-error)
-      ("p"  langtool-goto-previous-error)
-      ("c"  langtool-check)
-      ("C"  langtool-correct-buffer)
-      ("d"  langtool-check-done :color blue)
-      ("q" nil "quit" :color blue))
-    (bind-key "C-c h l" 'hydra-langtool/body org-mode-map))
-
   ;; http://emacs.stackexchange.com/a/10712/115
   (defun modi/org-delete-link ()
     "Replace an org link of the format [[LINK][DESCRIPTION]] with DESCRIPTION.
@@ -361,32 +320,6 @@ Execute this command while the point is on or after the hyper-linked org link."
               (replace-regexp "\\[\\[.*?\\(\\]\\[\\(.*?\\)\\)*\\]\\]" "\\2"
                               nil start end)))))))
   (bind-key "C-c d l" 'modi/org-delete-link org-mode-map)
-
-  ;; Org Cliplink: insert the link in the clipboard as an org link. Adds the
-  ;; title of the page as the description
-  ;; https://github.com/rexim/org-cliplink
-  (use-package org-cliplink
-    :bind (:map org-mode-map
-                ;; "C-c C-l" is bound to `org-insert-link' by default
-                ;; "C-c C-L" is bound to `org-cliplink'
-                ("C-c C-S-l" . org-cliplink)))
-
-  ;; org-download: easily add images to org buffers
-  ;; https://github.com/abo-abo/org-download
-  (use-package org-download)
-
-  ;; ox-gfm: export to github flavored markdown
-  ;; https://github.com/larstvei/ox-gfm
-  (use-package ox-gfm)
-
-  ;;  Automatic tables of contents for Org files
-  ;; https://github.com/alphapapa/org-make-toc
-  (use-package org-make-toc)
-
-  ;; pomodoro implementation in org
-  ;; https://github.com/lolownia/org-pomodoro
-  (use-package org-pomodoro
-    :config (bind-key "C-c o p" #'org-pomodoro org-mode-map))
 
   (defun bjm/org-headline-to-top ()
     "Move the current org headline to the top of its section"
@@ -482,7 +415,8 @@ Return 'left, 'right, 'both or nil."
     (org-agenda-redo))
 
   ;; bind to key 1
-  (bind-key "1" 'bjm/org-agenda-item-to-top org-agenda-mode-map)
+  (with-eval-after-load 'org-agenda
+    (bind-key "1" 'bjm/org-agenda-item-to-top org-agenda-mode-map))
 
   (defun org-archive-done-tasks ()
     (interactive)
@@ -621,105 +555,6 @@ exist after each headings's drawers."
                            nil
                          'tree)))
 
-  ;; https://github.com/alphapapa/unpackaged.el/blob/master/unpackaged.el#L982
-  (defun unpackaged/org-element-descendant-of (type element)
-    "Return non-nil if ELEMENT is a descendant of TYPE.
-TYPE should be an element type, like `item' or `paragraph'.
-ELEMENT should be a list like that returned by `org-element-context'."
-    ;; MAYBE: Use `org-element-lineage'.
-    (when-let* ((parent (org-element-property :parent element)))
-      (or (eq type (car parent))
-          (unpackaged/org-element-descendant-of type parent))))
-
-;;;###autoload
-  (defun unpackaged/org-return-dwim (&optional default)
-    "A helpful replacement for `org-return'.  With prefix, call `org-return'.
-On headings, move point to position after entry content.  In
-lists, insert a new item or end the list, with checkbox if
-appropriate.  In tables, insert a new row or end the table."
-    ;; Inspired by John Kitchin: http://kitchingroup.cheme.cmu.edu/blog/2017/04/09/A-better-return-in-org-mode/
-    (interactive "P")
-    (if default
-        (org-return)
-      (cond
-       ;; Act depending on context around point.
-
-       ;; NOTE: I prefer RET to not follow links, but by uncommenting this block, links will be
-       ;; followed.
-
-       ;; ((eq 'link (car (org-element-context)))
-       ;;  ;; Link: Open it.
-       ;;  (org-open-at-point-global))
-
-       ((org-at-heading-p)
-        ;; Heading: Move to position after entry content.
-        ;; NOTE: This is probably the most interesting feature of this function.
-        (let ((heading-start (org-entry-beginning-position)))
-          (goto-char (org-entry-end-position))
-          (cond ((and (org-at-heading-p)
-                      (= heading-start (org-entry-beginning-position)))
-                 ;; Entry ends on its heading; add newline after
-                 (end-of-line)
-                 (insert "\n\n"))
-                (t
-                 ;; Entry ends after its heading; back up
-                 (forward-line -1)
-                 (end-of-line)
-                 (when (org-at-heading-p)
-                   ;; At the same heading
-                   (forward-line)
-                   (insert "\n")
-                   (forward-line -1))
-                 ;; FIXME: looking-back is supposed to be called with more arguments.
-                 (while (not (looking-back (rx (repeat 3 (seq (optional blank) "\n")))))
-                   (insert "\n"))
-                 (forward-line -1)))))
-
-       ((org-at-item-checkbox-p)
-        ;; Checkbox: Insert new item with checkbox.
-        (org-insert-todo-heading nil))
-
-       ((org-in-item-p)
-        ;; Plain list.  Yes, this gets a little complicated...
-        (let ((context (org-element-context)))
-          (if (or (eq 'plain-list (car context))  ; First item in list
-                  (and (eq 'item (car context))
-                       (not (eq (org-element-property :contents-begin context)
-                                (org-element-property :contents-end context))))
-                  (unpackaged/org-element-descendant-of 'item context))  ; Element in list item, e.g. a link
-              ;; Non-empty item: Add new item.
-              (org-insert-item)
-            ;; Empty item: Close the list.
-            ;; TODO: Do this with org functions rather than operating on the text. Can't seem to find the right function.
-            (delete-region (line-beginning-position) (line-end-position))
-            (insert "\n"))))
-
-       ((when (fboundp 'org-inlinetask-in-task-p)
-          (org-inlinetask-in-task-p))
-        ;; Inline task: Don't insert a new heading.
-        (org-return))
-
-       ((org-at-table-p)
-        (cond ((save-excursion
-                 (beginning-of-line)
-                 ;; See `org-table-next-field'.
-                 (cl-loop with end = (line-end-position)
-                          for cell = (org-element-table-cell-parser)
-                          always (equal (org-element-property :contents-begin cell)
-                                        (org-element-property :contents-end cell))
-                          while (re-search-forward "|" end t)))
-               ;; Empty row: end the table.
-               (delete-region (line-beginning-position) (line-end-position))
-               (org-return))
-              (t
-               ;; Non-empty row: call `org-return'.
-               (org-return))))
-       (t
-        ;; All other cases: call `org-return'.
-        (org-return)))))
-
-  (bind-key "RET" 'unpackaged/org-return-dwim org-mode-map)
-
   ;; https://github.com/daviderestivo/galactic-emacs/blob/master/lisp/org-archive-subtree.el
   ;; archive subtrees/headings while also preserving their context
   (defadvice org-archive-subtree (around fix-hierarchy activate)
@@ -780,10 +615,42 @@ appropriate.  In tables, insert a new row or end the table."
 ;; When viewing a journal entry:
 ;; * C-c C-f to view next entry
 ;; * C-c C-b to view previous entry
-(use-package org-journal :defer 2
+(use-package org-journal
   :bind (("C-c o j" . org-journal-new-entry))
   :hook ((org-journal-mode . (lambda ()
                                (visual-line-mode -1)))))
+
+;;  Supercharge your Org daily/weekly agenda by grouping items
+;; https://github.com/alphapapa/org-super-agenda
+(use-package org-super-agenda
+  :after org
+  :config (org-super-agenda-mode))
+
+;; Org Cliplink: insert the link in the clipboard as an org link. Adds the
+;; title of the page as the description
+;; https://github.com/rexim/org-cliplink
+(use-package org-cliplink
+  :bind (:map org-mode-map
+              ;; "C-c C-l" is bound to `org-insert-link' by default
+              ;; "C-c C-L" is bound to `org-cliplink'
+              ("C-c C-S-l" . org-cliplink)))
+
+;; org-download: easily add images to org buffers
+;; https://github.com/abo-abo/org-download
+(use-package org-download
+  :after org)
+
+;;  Automatic tables of contents for Org files
+;; https://github.com/alphapapa/org-make-toc
+(use-package org-make-toc
+  :after org)
+
+;; pomodoro implementation in org
+;; https://github.com/lolownia/org-pomodoro
+(use-package org-pomodoro
+  :bind (:map org-mode-map
+           ("C-c o p" . org-pomodoro))
+  :after org)
 
 ;; Rich text clipboard for org-mode
 ;; https://github.com/unhammer/org-rich-yank
@@ -791,19 +658,52 @@ appropriate.  In tables, insert a new row or end the table."
   :bind (:map org-mode-map
               ("C-M-y" . org-rich-yank)))
 
+;; plantuml configuration
+(use-package ob-plantuml :straight nil
+  :commands
+  (org-babel-execute:plantuml)
+  :config
+  (setq org-plantuml-jar-path (expand-file-name "/usr/share/java/plantuml/plantuml.jar")))
+
+(use-package langtool :defer 1
+    :config
+    ;; place the language-tool directory in $HOME
+    (setq langtool-language-tool-jar
+          (concat user-home-directory "/usr/share/java/languagetool/languagetool-commandline.jar"))
+    (setq langtool-default-language "en-GB")
+
+    ;; hydra for langtool check
+    (defhydra hydra-langtool (:color pink
+                                     :hint nil)
+      "
+_c_: check    _n_: next error
+_C_: correct  _p_: prev error _d_: done checking
+"
+      ("n"  langtool-goto-next-error)
+      ("p"  langtool-goto-previous-error)
+      ("c"  langtool-check)
+      ("C"  langtool-correct-buffer)
+      ("d"  langtool-check-done :color blue)
+      ("q" nil "Quit" :color blue))
+    (bind-key "C-c h l" 'hydra-langtool/body org-mode-map))
+
 ;; Org-roam is a Roam replica built on top of the all-powerful Org-mode.
 ;; https://org-roam.readthedocs.io/en/master/
-(use-package org-roam
-  :hook
-  (after-init . org-roam-mode)
-  :custom
-  (org-roam-directory "~/org/notes/")
+(use-package org-roam :defer 1
   :bind (:map org-roam-mode-map
               (("C-c n l" . org-roam)
                ("C-c n f" . org-roam-find-file)
                ("C-c n b" . org-roam-switch-to-buffer)
                ("C-c n g" . org-roam-show-graph))
               :map org-mode-map
-              (("C-c n i" . org-roam-insert))))
+              (("C-c n i" . org-roam-insert)))
+  :config
+  (org-roam-mode)
+  (setq org-roam-directory "~/org/notes"))
+
+;; Interactively cleanup unreferenced IDs of org-id
+;; https://github.com/marcIhm/org-id-cleanup
+(use-package org-id-cleanup
+  :after org)
 
 (provide 'setup-org)

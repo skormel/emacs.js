@@ -1,5 +1,5 @@
 ;;; setup-json.el -*- lexical-binding: t; -*-
-;; Time-stamp: <2020-02-23 15:57:55 csraghunandan>
+;; Time-stamp: <2020-05-31 22:38:14 csraghunandan>
 
 ;; Copyright (C) 2016-2020 Chakravarthy Raghunandan
 ;; Author: Chakravarthy Raghunandan <rnraghunandan@gmail.com>
@@ -10,9 +10,7 @@
 (use-package json-mode
   :mode "\\.js\\(?:on\\|[hl]int\\(rc\\)?\\)\\'"
   :hook ((json-mode . (lambda ()
-                        (lsp)
-                        (lsp-ui-doc-mode)
-                        (lsp-ui-sideline-mode)
+                        (lsp-deferred)
                         (company-mode)
                         (flycheck-mode))))
   :config
@@ -23,7 +21,7 @@
 
   (defun my-json-mode-hook ()
     (set (make-local-variable 'company-backends)
-         '((company-lsp company-files :with company-yasnippet)
+         '((company-capf company-files :with company-yasnippet)
            (company-dabbrev-code company-dabbrev))))
   (add-hook 'json-mode-hook #'my-json-mode-hook))
 

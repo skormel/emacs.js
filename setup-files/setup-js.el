@@ -1,5 +1,5 @@
 ;;; setup-js.el -*- lexical-binding: t; -*-
-;; Time-stamp: <2020-01-24 11:56:01 csraghunandan>
+;; Time-stamp: <2020-12-26 19:40:46 adelgado>
 
 ;; Copyright (C) 2016-2020 Chakravarthy Raghunandan
 ;; Author: Chakravarthy Raghunandan <rnraghunandan@gmail.com>
@@ -108,23 +108,13 @@
     ("sl" js2r-forward-slurp)
     ("ba" js2r-forward-barf)
     ("k" js2r-kill)
-    ("q" nil)))
+    ("q" nil :color blue)))
 
 ;; prettier-emacs: minor-mode to prettify javascript files on save
 ;; https://github.com/prettier/prettier-emacs
 (use-package prettier-js
   :hook ((js2-mode . prettier-js-mode)
          (rjsx-mode . prettier-js-mode)))
-
-;; json-snatcher: get the path of any JSON element easily
-;; https://github.com/Sterlingg/json-snatcher
-(use-package json-snatcher
-  :hook ((json-mode . js-mode-bindings))
-  :config
-  (defun js-mode-bindings ()
-    "Sets a hotkey for using the json-snatcher plugin"
-    (when (string-match  "\\.json$" (buffer-name))
-      (local-set-key (kbd "C-c C-g") 'jsons-print-path))))
 
 ;; indium: javascript awesome development environment
 ;; https://github.com/NicolasPetton/indium

@@ -1,9 +1,3 @@
-# elpa packages
-elpa/
-
-# ignore the quickstart autoloads file
-package-quickstart.el
-
 # ignore var directory
 var/*
 !var/abbrev.el
@@ -12,12 +6,17 @@ var/*
 
 command-log/
 
-# My ignore patterns
-ac-comphist.dat
-auto-save-list/**
-tramp
-projectile-bookmarks.eld
-eshell/**
-**~
-\#**
+el-get/
+
+straight/build/
+straight/repos/
+straight/watcher/
+straight/build-cache.el
+straight/modified
+elpa/
+
+# ignore the emacs lisp nativecomp cache
+eln-cache/
+
+# ignore the org roam database
 org-roam.db
