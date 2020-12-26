@@ -31,3 +31,7 @@
 ;; in this file and can conflict with later config (particularly where the
 ;; cursor color is concerned).
 (advice-add #'x-apply-session-resources :override #'ignore)
+
+;; comment out this line if you are not using emacs native compilation branch
+;; native compile elisp files as they are loaded
+(setq comp-deferred-compilation t)
