@@ -1,5 +1,5 @@
 ;;; setup-visual.el -*- lexical-binding: t; -*-
-;; Time-stamp: <2020-06-10 00:03:11 csraghunandan>
+;; Time-stamp: <2020-12-26 23:56:20 adelgado>
 
 ;; Copyright (C) 2016-2020 Chakravarthy Raghunandan
 ;; Author: Chakravarthy Raghunandan <rnraghunandan@gmail.com>
@@ -16,7 +16,9 @@
 (setq inhibit-startup-echo-area-message t)
 
 ;; show line numbers globally
-(setq display-line-numbers-type 'relative)
+;; available types: relative, visual, t, nil
+;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Display-Custom.html
+(setq display-line-numbers-type 't)
 (global-display-line-numbers-mode)
 
 ;;; all frame related settings
@@ -40,8 +42,6 @@
 
 ;; show cursor in non-selected window as a hollow
 (setq-default cursor-in-non-selected-windows 'hollow)
-
-
 
 ;; Show actual lines instead of the page break char ^L
 ;; https://github.com/purcell/page-break-lines
@@ -67,8 +67,6 @@
           yaml-mode
           org-mode) . display-fill-column-indicator-mode)
   :config (setq-default display-fill-column-indicator-character 124))
-
-
 
 ;; fontify-face: Fontify symbols representing faces with that face.
 ;; https://github.com/Fuco1/fontify-face/tree/master

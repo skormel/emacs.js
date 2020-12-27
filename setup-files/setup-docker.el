@@ -1,5 +1,5 @@
 ;;; setup-docker.el -*- lexical-binding: t; -*-
-;; Time-stamp: <2020-12-26 19:38:26 adelgado>
+;; Time-stamp: <2020-12-26 23:54:05 adelgado>
 
 ;; Copyright (C) 2016-2020 Chakravarthy Raghunandan
 ;; Author: Chakravarthy Raghunandan <rnraghunandan@gmail.com>
@@ -29,7 +29,8 @@
 ;; https://github.com/Silex/docker.el
 (use-package docker
   :defer t
-  :bind ("C-c d" . docker))
+  ;; :bind ("C-c d" . docker)
+  )
 
 ;; docker-compose-mode: Major mode for editing docker-compose files
 ;; https://github.com/meqif/docker-compose-mode
