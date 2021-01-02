@@ -1,5 +1,5 @@
 ;;; early-init.el -*- lexical-binding: t; -*-
-;; Time-stamp: <2020-12-26 17:50:41 adelgado>
+;; Time-stamp: <2021-01-03 00:44:33 adelgado>
 
 ;; Copyright (C) 2016-2020 Chakravarthy Raghunandan
 ;; Author: Chakravarthy Raghunandan <rnraghunandan@gmail.com>

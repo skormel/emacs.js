@@ -19,3 +19,11 @@ npm install -g tern eslint
 git config --global --add magit.extension svn
 ```
 
+### Workflow
+TODO: Implement method to autoupdate packages
+
+workaround:
+straight-pull-all
+straight-rebuild-all
+straight-freeze-versions
+

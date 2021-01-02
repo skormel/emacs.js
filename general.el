@@ -1,5 +1,5 @@
 ;;; general.el -*- lexical-binding: t; -*-
-;; Time-stamp: <2020-12-26 19:36:32 adelgado>
+;; Time-stamp: <2021-01-03 00:41:05 adelgado>
 
 ;; Copyright (C) 2016-2020 Chakravarthy Raghunandan
 ;; Author: Chakravarthy Raghunandan <rnraghunandan@gmail.com>
@@ -40,7 +40,7 @@ If HERE is non-nil, also insert the string at point."
 ;; Quitting emacs via `C-x C-c` or the GUI 'X' button
 (setq confirm-kill-emacs #'y-or-n-p)
 
-(setq user-mail-address "rnraghunandan@gmail.com")
+(setq user-mail-address "skormel@gmail.com")
 
 (defun is-mac-p ()
   (eq system-type 'darwin))
