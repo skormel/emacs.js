@@ -1,5 +1,5 @@
 ;;; init.el -*- lexical-binding: t; -*-
-;; Time-stamp: <2021-01-03 00:41:24 adelgado>
+;; Time-stamp: <2021-01-03 01:51:24 adelgado>
 
 ;; Copyright (C) 2016-2020 Chakravarthy Raghunandan
 ;; Author: Chakravarthy Raghunandan <rnraghunandan@gmail.com>
@@ -75,7 +75,7 @@
 (require 'setup-window)
 ;; (require 'setup-project)
 ;; (require 'setup-yas)
-;; (require 'setup-buffers)
+(require 'setup-buffers)
 ;; (require 'setup-ivy)
 ;; (require 'setup-counsel)
 ;; (require 'setup-movement)
