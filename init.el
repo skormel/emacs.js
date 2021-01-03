@@ -1,5 +1,5 @@
 ;;; init.el -*- lexical-binding: t; -*-
-;; Time-stamp: <2021-01-03 01:51:24 adelgado>
+;; Time-stamp: <2021-01-03 02:19:16 adelgado>
 
 ;; Copyright (C) 2016-2020 Chakravarthy Raghunandan
 ;; Author: Chakravarthy Raghunandan <rnraghunandan@gmail.com>
@@ -64,10 +64,10 @@
 ;; (require 'setup-ibuffer)
 ;; (require 'setup-recentf)
 ;; (require 'setup-desktop)
-;; (require 'setup-calc)
-;; (require 'setup-ediff)
-;; (require 'setup-dired)
-;; (require 'setup-elisp-mode)
+(require 'setup-calc)
+(require 'setup-ediff)
+(require 'setup-dired)
+(require 'setup-elisp-mode)
 ;; (require 'setup-flycheck)
 ;; (require 'setup-spell)
 ;; (require 'setup-bookmark)
