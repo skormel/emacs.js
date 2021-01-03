@@ -1,9 +1,8 @@
 ;;; init.el -*- lexical-binding: t; -*-
-;; Time-stamp: <2021-01-03 02:19:16 adelgado>
+;; Time-stamp: <2021-01-03 02:35:14 adelgado>
 
 ;; Copyright (C) 2016-2020 Chakravarthy Raghunandan
 ;; Author: Chakravarthy Raghunandan <rnraghunandan@gmail.com>
-
 
 ;; Set this varibles to make elpa works with PROXY
 ;; (setq url-proxy-services
@@ -57,7 +56,7 @@
 ;; (require 'setup-company)
 (require 'setup-osx)
 ;; (require 'setup-backup)
-;; (require 'setup-selected)
+(require 'setup-selected)
 ;; (require 'setup-treemacs)
 ;; (require 'setup-search)
 ;; (require 'setup-rg)
@@ -90,7 +89,7 @@
 ;; (require 'setup-cc)
 ;; (require 'setup-python)
 ;; (require 'setup-tex)
-;; (require 'setup-origami)
+(require 'setup-origami)
 ;; (require 'setup-white-space)
 ;; (require 'setup-mc)
 ;; (require 'setup-ocaml)
@@ -139,8 +138,6 @@
 
 ;;; init.el ends here
 
-
-
 ;; OLD CONFIG
 
 ;; (setq gc-cons-threshold 100000000)
@@ -183,7 +180,6 @@
 ;;     ws-butler
 ;;     yasnippet
 ;;     ))
-
 
 ;; ;; Package: clean-aindent-mode
 ;; (require 'clean-aindent-mode)
@@ -257,7 +253,6 @@
 ;;      (require 'tern-auto-complete)
 ;;      (tern-ac-setup)))
 
-
 ;; (when (memq window-system '(mac ns x))
 ;;   (exec-path-from-shell-initialize))
 
@@ -266,7 +261,6 @@
 ;; (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 ;; (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 ;; (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-
 
 ;; (require 's)
 
