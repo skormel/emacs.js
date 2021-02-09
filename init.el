@@ -1,5 +1,5 @@
 ;;; init.el -*- lexical-binding: t; -*-
-;; Time-stamp: <2021-01-03 02:35:14 adelgado>
+;; Time-stamp: <2021-02-09 17:09:52 adelgado>
 
 ;; Copyright (C) 2016-2020 Chakravarthy Raghunandan
 ;; Author: Chakravarthy Raghunandan <rnraghunandan@gmail.com>
@@ -135,6 +135,15 @@
 (gcmh-mode +1)
 ;; garbage collect when moving out to other applications
 (add-function :after after-focus-change-function #'gcmh-idle-garbage-collect)
+
+(setq default-directory "~/")
+
+// To enable nodejs debug
+;; (require 'dap-node)
+;; (dap-node-setup)
+;; (setq dap-auto-configure-features '(sessions locals controls tooltip))
+;; (dap-ui-mode 1)
+;; (require 'dap-chrome)
 
 ;;; init.el ends here
 
