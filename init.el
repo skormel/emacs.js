@@ -1,5 +1,5 @@
 ;;; init.el -*- lexical-binding: t; -*-
-;; Time-stamp: <2021-02-09 17:09:52 adelgado>
+;; Time-stamp: <2021-02-09 17:43:39 adelgado>
 
 ;; Copyright (C) 2016-2020 Chakravarthy Raghunandan
 ;; Author: Chakravarthy Raghunandan <rnraghunandan@gmail.com>
@@ -138,7 +138,7 @@
 
 (setq default-directory "~/")
 
-// To enable nodejs debug
+;; To enable nodejs debug
 ;; (require 'dap-node)
 ;; (dap-node-setup)
 ;; (setq dap-auto-configure-features '(sessions locals controls tooltip))
