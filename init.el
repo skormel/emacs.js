@@ -1,5 +1,5 @@
 ;;; init.el -*- lexical-binding: t; -*-
-;; Time-stamp: <2021-03-15 22:38:19 adelgado>
+;; Time-stamp: <2021-03-16 23:10:52 adelgado>
 
 ;; Copyright (C) 2016-2020 Chakravarthy Raghunandan
 ;; Author: Chakravarthy Raghunandan <rnraghunandan@gmail.com>
@@ -59,7 +59,7 @@
 (require 'setup-selected)
 ;; (require 'setup-treemacs)
 ;; (require 'setup-search)
-;; (require 'setup-rg)
+(require 'setup-rg)
 ;; (require 'setup-ibuffer)
 ;; (require 'setup-recentf)
 ;; (require 'setup-desktop)
@@ -97,7 +97,7 @@
 ;; (require 'setup-css)
 (require 'setup-eshell)
 ;; (require 'setup-comint)
-;; (require 'setup-vterm)
+(require 'setup-vterm)
 (require 'setup-which-key)
 ;; (require 'setup-kurecolor)
 ;; (require 'setup-font-check)

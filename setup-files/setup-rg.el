@@ -1,5 +1,5 @@
 ;;; setup-rg -*- lexical-binding: t; -*-
-;; Time-stamp: <2020-05-22 23:12:59 csraghunandan>
+;; Time-stamp: <2021-03-16 23:14:47 adelgado>
 
 ;; Copyright (C) 2016-2020 Chakravarthy Raghunandan
 ;; Author: Chakravarthy Raghunandan <rnraghunandan@gmail.com>
