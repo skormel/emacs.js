@@ -1,5 +1,5 @@
 ;;; init.el -*- lexical-binding: t; -*-
-;; Time-stamp: <2021-02-09 17:43:39 adelgado>
+;; Time-stamp: <2021-03-15 22:38:19 adelgado>
 
 ;; Copyright (C) 2016-2020 Chakravarthy Raghunandan
 ;; Author: Chakravarthy Raghunandan <rnraghunandan@gmail.com>
@@ -91,7 +91,7 @@
 ;; (require 'setup-tex)
 (require 'setup-origami)
 ;; (require 'setup-white-space)
-;; (require 'setup-mc)
+(require 'setup-mc)
 ;; (require 'setup-ocaml)
 ;; (require 'setup-web-mode)
 ;; (require 'setup-css)
@@ -122,6 +122,7 @@
 ;; (require 'setup-pdf)
 ;; (require 'setup-engine-mode)
 ;; (require 'setup-config-files)
+(require 'setup-telegram)
 
 ;; start emacs server only it has not already been started
 (require 'server)
