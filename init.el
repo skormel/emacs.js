@@ -1,5 +1,5 @@
 ;;; init.el -*- lexical-binding: t; -*-
-;; Time-stamp: <2021-03-16 23:10:52 adelgado>
+;; Time-stamp: <2021-03-16 23:19:27 adelgado>
 
 ;; Copyright (C) 2016-2020 Chakravarthy Raghunandan
 ;; Author: Chakravarthy Raghunandan <rnraghunandan@gmail.com>
@@ -117,7 +117,7 @@
 (require 'setup-sh)
 ;; (require 'setup-comb)
 ;; (require 'setup-smerge)
-;; (require 'setup-nov)
+(require 'setup-nov)
 ;; (require 'setup-xkcd)
 ;; (require 'setup-pdf)
 ;; (require 'setup-engine-mode)
