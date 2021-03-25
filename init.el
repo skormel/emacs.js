@@ -97,7 +97,7 @@
 ;; (require 'setup-css)
 (require 'setup-eshell)
 ;; (require 'setup-comint)
-(require 'setup-vterm)
+;; (require 'setup-vterm)
 (require 'setup-which-key)
 ;; (require 'setup-kurecolor)
 ;; (require 'setup-font-check)
